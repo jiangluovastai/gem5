@@ -242,11 +242,64 @@ for i in range(np):
     if args.checker:
         system.cpu[i].addCheckerCpu()
 
+# ----------------- TO set below params for BP unit, TAGE
+
+#   [system.cpu.branchPred]
+#   type=TAGE
+#   children=indirectBranchPred tage
+#   BTBEntries=4096
+#   BTBTagSize=16
+#   RASSize=16
+#   eventq_index=0
+#   indirectBranchPred=system.cpu.branchPred.indirectBranchPred
+#   instShiftAmt=2
+#   numThreads=1
+#   tage=system.cpu.branchPred.tage
+#   
+#   [system.cpu.branchPred.indirectBranchPred]
+#   type=SimpleIndirectPredictor
+#   eventq_index=0
+#   indirectGHRBits=13
+#   indirectHashGHR=true
+#   indirectHashTargets=true
+#   indirectPathLength=3
+#   indirectSets=256
+#   indirectTagSize=16
+#   indirectWays=2
+#   instShiftAmt=2
+#   numThreads=1
+#   
+#   [system.cpu.branchPred.tage]
+#   type=TAGEBase
+#   eventq_index=0
+#   histBufferSize=2097152
+#   initialTCounterValue=131072
+#   instShiftAmt=2
+#   logRatioBiModalHystEntries=2
+#   logTagTableSizes=13 9 9 9 9 9 9 9
+#   logUResetPeriod=18
+#   maxHist=256
+#   maxNumAlloc=1
+#   minHist=5
+#   nHistoryTables=7
+#   noSkip=
+#   numThreads=1
+#   numUseAltOnNa=1
+#   pathHistBits=16
+#   speculativeHistUpdate=true
+#   tagTableCounterBits=3
+#   tagTableTagWidths=0 9 9 10 10 11 11 12
+#   tagTableUBits=2
+#   useAltOnNaBits=4
+
     if args.bp_type:
         bpClass = ObjectList.bp_list.get(args.bp_type)
         system.cpu[i].branchPred = bpClass()
         print(dir(system.cpu[i].branchPred))
-        system.cpu[i].branchPred.tage.maxHist = 256
+        #system.cpu[i].branchPred.tage.maxHist = 16
+        system.cpu[i].branchPred.tage.nHistoryTables = 3
+        system.cpu[i].branchPred.tage.logTagTableSizes = [7, 5, 5, 5]
+        system.cpu[i].branchPred.tage.tagTableTagWidths = [0, 5, 5, 7]
 
     if args.indirect_bp_type:
         indirectBPClass = ObjectList.indirect_bp_list.get(
