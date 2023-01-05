@@ -1,0 +1,3 @@
+[submodule "tests/test-progs/speccpu"]
+	path = tests/test-progs/speccpu
+	url = git@gitee.com:shuheque/speccpu.git
