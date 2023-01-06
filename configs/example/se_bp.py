@@ -297,9 +297,27 @@ for i in range(np):
         system.cpu[i].branchPred = bpClass()
         print(dir(system.cpu[i].branchPred))
         #system.cpu[i].branchPred.tage.maxHist = 16
-        system.cpu[i].branchPred.tage.nHistoryTables = 3
-        system.cpu[i].branchPred.tage.logTagTableSizes = [7, 5, 5, 5]
-        system.cpu[i].branchPred.tage.tagTableTagWidths = [0, 5, 5, 7]
+        
+        #system.cpu[i].branchPred.tage.nHistoryTables = 2
+        #system.cpu[i].branchPred.tage.logTagTableSizes = [7, 5, 5]
+        #system.cpu[i].branchPred.tage.logTagTableSizes = [7, 5, 5]
+        #system.cpu[i].branchPred.tage.tagTableTagWidths = [0, 5, 7]
+
+        # check bimodal entry num impact
+        #system.cpu[i].branchPred.tage.logTagTableSizes = [10, 9, 9, 9, 9, 9, 9, 9]
+
+        # check component entry num impact
+        #system.cpu[i].branchPred.tage.logTagTableSizes = [13, 9, 9, 9, 9, 8, 5, 4]
+
+        # check path history impact
+        #system.cpu[i].branchPred.tage.instShiftAmt = 3
+        #system.cpu[i].branchPred.tage.pathHistBits = 4
+        
+        # check useful reset period impact
+        system.cpu[i].branchPred.tage.logUResetPeriod = 19
+
+
+        #system.cpu[i].branchPred.tage.tagTableCounterBits = 2
 
     if args.indirect_bp_type:
         indirectBPClass = ObjectList.indirect_bp_list.get(
