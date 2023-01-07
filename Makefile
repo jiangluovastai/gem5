@@ -9,14 +9,12 @@ POSTFIX :=
 
 ifeq ($(OUTDIR), )
 OUTDIR_FINAL := 
-$
 else
 OUTDIR_FINAL := $(OUTDIR)/
 endif
 
 ifeq ($(POSTFIX), )
 POSTFIX_F := 
-$
 else
 POSTFIX_F := $(POSTFIX)/
 endif
