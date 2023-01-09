@@ -295,34 +295,35 @@ for i in range(np):
     if args.bp_type:
         bpClass = ObjectList.bp_list.get(args.bp_type)
         system.cpu[i].branchPred = bpClass()
-        print(dir(system.cpu[i].branchPred))
+        if type(system.cpu[i].branchPred)==TAGE:
+            #system.cpu[i].branchPred.tage.maxHist = 32
+            
+            #system.cpu[i].branchPred.tage.nHistoryTables = 3
+            #system.cpu[i].branchPred.tage.logTagTableSizes = [10, 9, 9, 9]
+            #system.cpu[i].branchPred.tage.tagTableTagWidths = [0, 9, 11, 12]
 
-        system.cpu[i].branchPred.tage.maxHist = 32
-        
-        #system.cpu[i].branchPred.tage.nHistoryTables = 3
-        #system.cpu[i].branchPred.tage.logTagTableSizes = [10, 9, 9, 9]
-        #system.cpu[i].branchPred.tage.tagTableTagWidths = [0, 9, 11, 12]
+            # check bimodal entry num impact
+            #system.cpu[i].branchPred.tage.logTagTableSizes = [10, 9, 9, 9, 9, 9, 9, 9]
 
-        # check bimodal entry num impact
-        #system.cpu[i].branchPred.tage.logTagTableSizes = [10, 9, 9, 9, 9, 9, 9, 9]
+            # check component entry num impact
+            #system.cpu[i].branchPred.tage.logTagTableSizes = [13, 9, 9, 9, 9, 8, 5, 4]
 
-        # check component entry num impact
-        #system.cpu[i].branchPred.tage.logTagTableSizes = [13, 9, 9, 9, 9, 8, 5, 4]
+            # check path history impact
+            #system.cpu[i].branchPred.tage.instShiftAmt = 3
+            #system.cpu[i].branchPred.tage.pathHistBits = 4
+            
+            # check useful reset period impact
+            #system.cpu[i].branchPred.tage.logUResetPeriod = 17
 
-        # check path history impact
-        #system.cpu[i].branchPred.tage.instShiftAmt = 3
-        #system.cpu[i].branchPred.tage.pathHistBits = 4
-        
-        # check useful reset period impact
-        #system.cpu[i].branchPred.tage.logUResetPeriod = 17
-
-        # every 8 entries of BiModal entries share 1 hyst entry
-        #system.cpu[i].branchPred.tage.logRatioBiModalHystEntries = 3
-        # every 2 entries of BiModal entries share 1 hyst entry
-        #system.cpu[i].branchPred.tage.logRatioBiModalHystEntries = 1
+            # every 8 entries of BiModal entries share 1 hyst entry
+            #system.cpu[i].branchPred.tage.logRatioBiModalHystEntries = 3
+            # every 2 entries of BiModal entries share 1 hyst entry
+            #system.cpu[i].branchPred.tage.logRatioBiModalHystEntries = 1
 
 
-        #system.cpu[i].branchPred.tage.tagTableCounterBits = 2
+            #system.cpu[i].branchPred.tage.tagTableCounterBits = 2
+
+            pass
 
     if args.indirect_bp_type:
         indirectBPClass = ObjectList.indirect_bp_list.get(
