@@ -324,6 +324,10 @@ for i in range(np):
             #system.cpu[i].branchPred.tage.tagTableCounterBits = 2
 
             pass
+        elif type(system.cpu[i].branchPred)==LTAGE:
+            print('resetting LTAGE to TAGEBase as baseline.')
+            system.cpu[i].branchPred.tage = TAGEBase()  # use default so we have baseline to compare
+            
 
     if args.indirect_bp_type:
         indirectBPClass = ObjectList.indirect_bp_list.get(
