@@ -60,3 +60,10 @@ pipeview:
 	python3 util/o3-pipeview.py -c 500 -o pipeview.out --color out/o3_vis/trace.out
 	less -r pipeview.out
 
+list:
+	@echo '######################################################################################'
+	./build/RISCV/gem5.opt configs/example/se_bp.py --list-bp-types
+	@echo '######################################################################################'
+	./build/RISCV/gem5.opt configs/example/se_bp.py --list-indirect-bp-types
+	@echo '######################################################################################'
+	./build/RISCV/gem5.opt configs/example/se_bp.py --list-cpu-types
