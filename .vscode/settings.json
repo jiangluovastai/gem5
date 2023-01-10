@@ -1,0 +1,13 @@
+{
+    "cmake.configureOnOpen": false,
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}/src/python/",
+        "${workspaceFolder}/site_scons/",
+        "${workspaceFolder}/ext",
+        "${workspaceFolder}/src/python/m5",
+        "${workspaceFolder}/build/RISCV/python",
+        "${workspaceFolder}/build/RISCV/python/m5",
+        "${workspaceFolder}/build/RISCV/python/m5/objects",
+        "${workspaceFolder}/build/RISCV/src/cpu/pred"
+    ]
+}
