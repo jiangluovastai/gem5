@@ -50,10 +50,10 @@ ooo:
 		--bp-type $(BP_TYPE)
 
 timing_simple:
-	./build/RISCV/gem5.opt  --outdir m5out_TimingSimpleCPU_$(BP_TYPE)_$(L1I)_$(L1D)_$(shell date +%N)$(POSTFIX_F) configs/example/se_bp.py -c $(PLD_BIN) -o hello \
+	./build/RISCV/gem5.opt  --outdir m5out_TimingSimpleCPU_$(BP_TYPE)_$(L1I)_$(L1D)_$(shell date +%N)$(POSTFIX_F) configs/example/se_bp.py -c $(PLD_BIN) -o '$(PLD_OPT)' \
 		--cpu-type TimingSimpleCPU \
-		--caches --l1d_size $(L1D) --l1i_size $(L1I) --cacheline_size $(CACHELINE)
-		#--bp-type $(BP_TYPE)
+		--caches --l1d_size $(L1D) --l1i_size $(L1I) --cacheline_size $(CACHELINE) \
+		--bp-type $(BP_TYPE)
 
 
 pipeview:
