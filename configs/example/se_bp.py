@@ -229,6 +229,9 @@ if args.simpoint_profile:
         fatal("SimPoint generation not supported with more than one CPUs")
 
 for i in range(np):
+
+    cpu = system.cpu[i]
+
     if args.smt:
         system.cpu[i].workload = multiprocesses
     elif len(multiprocesses) == 1:
@@ -241,6 +244,13 @@ for i in range(np):
 
     if args.checker:
         system.cpu[i].addCheckerCpu()
+    
+
+    #   ----- Handle O3 CPU params -----
+    if isinstance(cpu, BaseO3CPU):
+        print('Overriding O3 CPU params..')
+        cpu.fetchToDecodeDelay = 2
+        cpu.decodeWidth = 4
 
 # ----------------- TO set below params for BP unit, TAGE
 

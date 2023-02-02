@@ -19,6 +19,8 @@ else
 POSTFIX_F := _$(POSTFIX)
 endif
 
+OUT_TIME := $(shell date +%y%m%d%H%M%S)
+
 ifeq ($(DEBUG), 1)
 DEBUG_OPTS = --debug-flags=O3PipeView --debug-file=trace.out
 else
@@ -37,20 +39,20 @@ CACHELINE := 64
 #OUTDIR := m5out_$(CPU_TYPE)_$(BP_TYPE)_$(L1I)_$(L1D)_$(shell date +%N)
 
 testargs:
-	@echo ./build/RISCV/gem5.opt  --outdir $(OUTDIR_FINAL)/m5out_DerivO3CPU_$(BP_TYPE)_$(L1I)_$(L1D)_$(shell date +%N)$(POSTFIX_F) configs/example/se_bp.py -c $(PLD_BIN) -o '$(PLD_OPT)' \
+	@echo ./build/RISCV/gem5.opt  --outdir $(OUTDIR_FINAL)/m5out_DerivO3CPU_$(BP_TYPE)_$(L1I)_$(L1D)_$(OUT_TIME)$(POSTFIX_F) configs/example/se_bp.py -c $(PLD_BIN) -o '$(PLD_OPT)' \
 		--cpu-type $(CPU_TYPE) \
 		--caches --l1d_size $(L1D) --l1i_size $(L1I) --cacheline_size $(CACHELINE) \
 		--bp-type $(BP_TYPE)
 	echo $(DEBUG_OPTS)
 
 ooo:
-	./build/RISCV/gem5.opt $(DEBUG_OPTS)  --outdir $(OUTDIR_FINAL)m5out_DerivO3CPU_$(BP_TYPE)_$(L1I)_$(L1D)_$(shell date +%N)$(POSTFIX_F) configs/example/se_bp.py -c $(PLD_BIN) -o '$(PLD_OPT)' \
+	./build/RISCV/gem5.opt $(DEBUG_OPTS)  --outdir $(OUTDIR_FINAL)m5out_DerivO3CPU_$(BP_TYPE)_$(L1I)_$(L1D)_$(OUT_TIME)$(POSTFIX_F) configs/example/se_bp.py -c $(PLD_BIN) -o '$(PLD_OPT)' \
 		--cpu-type $(CPU_TYPE) \
 		--caches --l1d_size $(L1D) --l1i_size $(L1I) --cacheline_size $(CACHELINE) \
 		--bp-type $(BP_TYPE)
 
 timing_simple:
-	./build/RISCV/gem5.opt  --outdir m5out_TimingSimpleCPU_$(BP_TYPE)_$(L1I)_$(L1D)_$(shell date +%N)$(POSTFIX_F) configs/example/se_bp.py -c $(PLD_BIN) -o '$(PLD_OPT)' \
+	./build/RISCV/gem5.opt  --outdir m5out_TimingSimpleCPU_$(BP_TYPE)_$(L1I)_$(L1D)_$(OUT_TIME)$(POSTFIX_F) configs/example/se_bp.py -c $(PLD_BIN) -o '$(PLD_OPT)' \
 		--cpu-type TimingSimpleCPU \
 		--caches --l1d_size $(L1D) --l1i_size $(L1I) --cacheline_size $(CACHELINE) \
 		--bp-type $(BP_TYPE)
