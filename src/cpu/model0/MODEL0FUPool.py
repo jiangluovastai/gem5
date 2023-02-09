@@ -1,5 +1,5 @@
-# Copyright (c) 2013 - 2015 ARM Limited
-# All rights reserved.
+# Copyright (c) 2017 ARM Limited
+# All rights reserved
 #
 # The license below extends only to copyright in the software and shall
 # not be construed as granting a license to any other intellectual
@@ -9,6 +9,9 @@
 # terms below provided that you ensure that this notice is replicated
 # unmodified and in its entirety in all distributions of the software,
 # modified or unmodified, in source code or in binary form.
+#
+# Copyright (c) 2006-2007 The Regents of The University of Michigan
+# All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
@@ -33,38 +36,29 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-from m5.objects.Probe import *
+from m5.SimObject import SimObject
+from m5.params import *
+from m5.objects.FuncUnit import *
+from m5.objects.MODEL0FuncUnitConfig import *
 
 
-class ElasticTrace(ProbeListenerObject):
-    type = "ElasticTrace"
-    cxx_class = "gem5::model0::ElasticTrace"
-    cxx_header = "cpu/model0/probe/elastic_trace.hh"
+class MODEL0FUPool(SimObject):
+    type = "MODEL0FUPool"
+    cxx_class = "gem5::model0::FUPool"
+    cxx_header = "cpu/model0/fu_pool.hh"
+    FUList = VectorParam.FUDesc("list of FU's for this pool")
 
-    # Trace files for the following params are created in the output directory.
-    # User is forced to provide these when an instance of this class is created.
-    instFetchTraceFile = Param.String(
-        desc="Protobuf trace file name for " "instruction fetch tracing"
-    )
-    dataDepTraceFile = Param.String(
-        desc="Protobuf trace file name for " "data dependency tracing"
-    )
-    # The dependency window size param must be equal to or greater than the
-    # number of entries in the MODEL0CPU ROB, a typical value is 3 times ROB size
-    depWindowSize = Param.Unsigned(
-        desc="Instruction window size used for "
-        "recording and processing data "
-        "dependencies"
-    )
-    # The committed instruction count from which to start tracing
-    startTraceInst = Param.UInt64(
-        0,
-        "The number of committed instructions "
-        "after which to start tracing. Default "
-        "zero means start tracing from first "
-        "committed instruction.",
-    )
-    # Whether to trace virtual addresses for memory accesses
-    traceVirtAddr = Param.Bool(
-        False, "Set to true if virtual addresses are " "to be traced."
-    )
+
+class DefaultMODEL0FUPool(MODEL0FUPool):
+    FUList = [
+        IntALU(),
+        IntMultDiv(),
+        FP_ALU(),
+        FP_MultDiv(),
+        ReadPort(),
+        SIMD_Unit(),
+        PredALU(),
+        WritePort(),
+        RdWrPort(),
+        IprPort(),
+    ]

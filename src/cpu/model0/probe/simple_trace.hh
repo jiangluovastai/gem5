@@ -45,7 +45,8 @@
 #define __CPU_MODEL0_PROBE_SIMPLE_TRACE_HH__
 
 #include "cpu/model0/dyn_inst_ptr.hh"
-#include "params/SimpleTrace.hh"
+//#include "params/SimpleTrace.hh"
+#include "params/MODEL0SimpleTrace.hh"
 #include "sim/probe/probe.hh"
 
 namespace gem5
@@ -58,7 +59,7 @@ class SimpleTrace : public ProbeListenerObject
 {
 
   public:
-    SimpleTrace(const SimpleTraceParams &params) :
+    SimpleTrace(const MODEL0SimpleTraceParams &params) :
         ProbeListenerObject(params)
     {
     }

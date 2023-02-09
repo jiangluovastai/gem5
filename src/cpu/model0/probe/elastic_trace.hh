@@ -54,7 +54,8 @@
 #include "cpu/model0/dyn_inst_ptr.hh"
 #include "cpu/reg_class.hh"
 #include "mem/request.hh"
-#include "params/ElasticTrace.hh"
+//#include "params/ElasticTrace.hh"
+#include "params/MODEL0ElasticTrace.hh"
 #include "proto/inst_dep_record.pb.h"
 #include "proto/packet.pb.h"
 #include "proto/protoio.hh"
@@ -101,7 +102,7 @@ class ElasticTrace : public ProbeListenerObject
     typedef ProtoMessage::InstDepRecord Record;
 
     /** Constructor */
-    ElasticTrace(const ElasticTraceParams &params);
+    ElasticTrace(const MODEL0ElasticTraceParams &params);
 
     /**
      * Register the probe listeners that is the methods called on a probe point

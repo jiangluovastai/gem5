@@ -41,21 +41,21 @@ from m5.params import *
 from m5.proxy import *
 
 from m5.objects.BaseCPU import BaseCPU
-from m5.objects.FUPool import *
+from m5.objects.MODEL0FUPool import *
 
 # from m5.objects.MODEL0Checker import MODEL0Checker
 from m5.objects.BranchPredictor import *
 
 
-class SMTFetchPolicy(ScopedEnum):
+class M0SMTFetchPolicy(ScopedEnum):
     vals = ["RoundRobin", "Branch", "IQCount", "LSQCount"]
 
 
-class SMTQueuePolicy(ScopedEnum):
+class M0SMTQueuePolicy(ScopedEnum):
     vals = ["Dynamic", "Partitioned", "Threshold"]
 
 
-class CommitPolicy(ScopedEnum):
+class M0CommitPolicy(ScopedEnum):
     vals = ["RoundRobin", "OldestReady"]
 
 
@@ -124,7 +124,7 @@ class BaseMODEL0CPU(BaseCPU):
     dispatchWidth = Param.Unsigned(8, "Dispatch width")
     issueWidth = Param.Unsigned(8, "Issue width")
     wbWidth = Param.Unsigned(8, "Writeback width")
-    fuPool = Param.FUPool(DefaultFUPool(), "Functional Unit pool")
+    fuPool = Param.MODEL0FUPool(DefaultMODEL0FUPool(), "Functional Unit pool")  # check if need to modify here
 
     iewToCommitDelay = Param.Cycles(
         1, "Issue/Execute/Writeback to commit " "delay"

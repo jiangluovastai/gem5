@@ -60,7 +60,7 @@
 #include "debug/Drain.hh"
 #include "debug/Fetch.hh"
 #include "debug/MODEL0CPU.hh"
-#include "debug/MODEL0PipeView.hh"
+#include "debug/O3PipeView.hh"
 #include "mem/packet.hh"
 #include "params/BaseMODEL0CPU.hh"
 #include "sim/byteswap.hh"
@@ -1276,7 +1276,7 @@ Fetch::fetch(bool &status_change)
             numInst++;
 
 #if TRACING_ON
-            if (debug::MODEL0PipeView) {
+            if (debug::O3PipeView) {
                 instruction->fetchTick = curTick();
             }
 #endif

@@ -48,7 +48,8 @@
 #include <vector>
 
 #include "cpu/op_class.hh"
-#include "params/FUPool.hh"
+//#include "params/FUPool.hh"
+#include "params/MODEL0FUPool.hh"
 #include "sim/sim_object.hh"
 
 namespace gem5
@@ -134,7 +135,7 @@ class FUPool : public SimObject
     typedef std::vector<FuncUnit *>::iterator fuListIterator;
 
   public:
-    typedef FUPoolParams Params;
+    typedef MODEL0FUPoolParams Params;
     /** Constructs a FU pool. */
     FUPool(const Params &p);
     ~FUPool();

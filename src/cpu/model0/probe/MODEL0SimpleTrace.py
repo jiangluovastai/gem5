@@ -36,7 +36,7 @@
 from m5.objects.Probe import *
 
 
-class SimpleTrace(ProbeListenerObject):
-    type = "SimpleTrace"
+class MODEL0SimpleTrace(ProbeListenerObject):
+    type = "MODEL0SimpleTrace"
     cxx_class = "gem5::model0::SimpleTrace"
     cxx_header = "cpu/model0/probe/simple_trace.hh"

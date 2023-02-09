@@ -51,7 +51,7 @@ namespace gem5
 namespace model0
 {
 
-ElasticTrace::ElasticTrace(const ElasticTraceParams &params)
+ElasticTrace::ElasticTrace(const MODEL0ElasticTraceParams &params)
     :  ProbeListenerObject(params),
        regEtraceListenersEvent([this]{ regEtraceListeners(); }, name()),
        firstWin(true),

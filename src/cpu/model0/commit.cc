@@ -62,7 +62,7 @@
 #include "debug/Drain.hh"
 #include "debug/ExecFaulting.hh"
 #include "debug/HtmCpu.hh"
-#include "debug/MODEL0PipeView.hh"
+#include "debug/O3PipeView.hh"
 #include "params/BaseMODEL0CPU.hh"
 #include "sim/faults.hh"
 #include "sim/full_system.hh"
@@ -1312,7 +1312,7 @@ Commit::commitHead(const DynInstPtr &head_inst, unsigned inst_num)
     rob->retireHead(tid);
 
 #if TRACING_ON
-    if (debug::MODEL0PipeView) {
+    if (debug::O3PipeView) {
         head_inst->commitTick = curTick() - head_inst->fetchTick;
     }
 #endif

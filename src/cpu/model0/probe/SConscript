@@ -38,10 +38,10 @@
 Import('*')
 
 if not env['CONF']['USE_NULL_ISA']:
-    SimObject('SimpleTrace.py', sim_objects=['SimpleTrace'])
+    SimObject('MODEL0SimpleTrace.py', sim_objects=['MODEL0SimpleTrace'])
     Source('simple_trace.cc')
-    DebugFlag('SimpleTrace')
+    DebugFlag('M0SimpleTrace')
 
-    SimObject('ElasticTrace.py', sim_objects=['ElasticTrace'], tags='protobuf')
+    SimObject('MODEL0ElasticTrace.py', sim_objects=['MODEL0ElasticTrace'], tags='protobuf')
     Source('elastic_trace.cc', tags='protobuf')
-    DebugFlag('ElasticTrace', tags='protobuf')
+    #DebugFlag('M0ElasticTrace', tags='protobuf')

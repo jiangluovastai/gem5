@@ -45,7 +45,7 @@
 #include "base/intmath.hh"
 #include "debug/DynInst.hh"
 #include "debug/IQ.hh"
-#include "debug/MODEL0PipeView.hh"
+#include "debug/O3PipeView.hh"
 
 namespace gem5
 {
@@ -209,14 +209,14 @@ DynInst::~DynInst()
         _readySrcIdx[i].~uint8_t();
 
 #if TRACING_ON
-    if (debug::MODEL0PipeView) {
+    if (debug::O3PipeView) {
         Tick fetch = fetchTick;
         // fetchTick can be -1 if the instruction fetched outside the trace
         // window.
         if (fetch != -1) {
             Tick val;
             // Print info needed by the pipeline activity viewer.
-            DPRINTFR(MODEL0PipeView, "MODEL0PipeView:fetch:%llu:0x%08llx:%d:%llu:%s\n",
+            DPRINTFR(O3PipeView, "O3PipeView:fetch:%llu:0x%08llx:%d:%llu:%s\n",
                      fetch,
                      pcState().instAddr(),
                      pcState().microPC(),
@@ -224,19 +224,19 @@ DynInst::~DynInst()
                      staticInst->disassemble(pcState().instAddr()));
 
             val = (decodeTick == -1) ? 0 : fetch + decodeTick;
-            DPRINTFR(MODEL0PipeView, "MODEL0PipeView:decode:%llu\n", val);
+            DPRINTFR(O3PipeView, "O3PipeView:decode:%llu\n", val);
             val = (renameTick == -1) ? 0 : fetch + renameTick;
-            DPRINTFR(MODEL0PipeView, "MODEL0PipeView:rename:%llu\n", val);
+            DPRINTFR(O3PipeView, "O3PipeView:rename:%llu\n", val);
             val = (dispatchTick == -1) ? 0 : fetch + dispatchTick;
-            DPRINTFR(MODEL0PipeView, "MODEL0PipeView:dispatch:%llu\n", val);
+            DPRINTFR(O3PipeView, "O3PipeView:dispatch:%llu\n", val);
             val = (issueTick == -1) ? 0 : fetch + issueTick;
-            DPRINTFR(MODEL0PipeView, "MODEL0PipeView:issue:%llu\n", val);
+            DPRINTFR(O3PipeView, "O3PipeView:issue:%llu\n", val);
             val = (completeTick == -1) ? 0 : fetch + completeTick;
-            DPRINTFR(MODEL0PipeView, "MODEL0PipeView:complete:%llu\n", val);
+            DPRINTFR(O3PipeView, "O3PipeView:complete:%llu\n", val);
             val = (commitTick == -1) ? 0 : fetch + commitTick;
 
             Tick valS = (storeTick == -1) ? 0 : fetch + storeTick;
-            DPRINTFR(MODEL0PipeView, "MODEL0PipeView:retire:%llu:store:%llu\n",
+            DPRINTFR(O3PipeView, "O3PipeView:retire:%llu:store:%llu\n",
                     val, valS);
         }
     }

@@ -48,7 +48,7 @@
 #include "cpu/model0/limits.hh"
 #include "cpu/reg_class.hh"
 #include "debug/Activity.hh"
-#include "debug/MODEL0PipeView.hh"
+#include "debug/O3PipeView.hh"
 #include "debug/Rename.hh"
 #include "params/BaseMODEL0CPU.hh"
 
@@ -794,7 +794,7 @@ Rename::sortInsts()
         const DynInstPtr &inst = fromDecode->insts[i];
         insts[inst->threadNumber].push_back(inst);
 #if TRACING_ON
-        if (debug::MODEL0PipeView) {
+        if (debug::O3PipeView) {
             inst->renameTick = curTick() - inst->fetchTick;
         }
 #endif

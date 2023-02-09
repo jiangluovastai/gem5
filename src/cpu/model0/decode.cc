@@ -47,7 +47,7 @@
 #include "cpu/model0/limits.hh"
 #include "debug/Activity.hh"
 #include "debug/Decode.hh"
-#include "debug/MODEL0PipeView.hh"
+#include "debug/O3PipeView.hh"
 #include "params/BaseMODEL0CPU.hh"
 #include "sim/full_system.hh"
 
@@ -687,7 +687,7 @@ Decode::decodeInsts(ThreadID tid)
         --insts_available;
 
 #if TRACING_ON
-        if (debug::MODEL0PipeView) {
+        if (debug::O3PipeView) {
             inst->decodeTick = curTick() - inst->fetchTick;
         }
 #endif

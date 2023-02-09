@@ -69,3 +69,7 @@ list:
 	./build/RISCV/gem5.opt configs/example/se_bp.py --list-indirect-bp-types
 	@echo '######################################################################################'
 	./build/RISCV/gem5.opt configs/example/se_bp.py --list-cpu-types
+
+
+build.riscv:
+	python3 `which scons` -j 32 build/RISCV/gem5.opt
