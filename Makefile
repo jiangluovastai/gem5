@@ -51,6 +51,12 @@ ooo:
 		--caches --l1d_size $(L1D) --l1i_size $(L1I) --cacheline_size $(CACHELINE) \
 		--bp-type $(BP_TYPE)
 
+m0:
+	./build/RISCV/gem5.opt $(DEBUG_OPTS)  --outdir $(OUTDIR_FINAL)m5out_DerivMODEL0CPU_$(BP_TYPE)_$(L1I)_$(L1D)_$(OUT_TIME)$(POSTFIX_F) configs/example/se_bp.py -c $(PLD_BIN) -o '$(PLD_OPT)' \
+		--cpu-type DerivMODEL0CPU \
+		--caches --l1d_size $(L1D) --l1i_size $(L1I) --cacheline_size $(CACHELINE) \
+		--bp-type $(BP_TYPE)
+
 timing_simple:
 	./build/RISCV/gem5.opt  --outdir m5out_TimingSimpleCPU_$(BP_TYPE)_$(L1I)_$(L1D)_$(OUT_TIME)$(POSTFIX_F) configs/example/se_bp.py -c $(PLD_BIN) -o '$(PLD_OPT)' \
 		--cpu-type TimingSimpleCPU \
