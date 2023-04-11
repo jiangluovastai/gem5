@@ -8,14 +8,12 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/RISCV/gem5.opt",
+            "program": "${workspaceFolder}/build/RISCV/gem5.debug",
             "args": [
                 // --outdir m5out_DerivO3CPU_BiModeBP_4096_4096_301371930 configs/example/se_bp.py -c 401.bzip2/bzip2.rv -o '-f -k -z README' --cpu-type DerivO3CPU --caches --l1d_size 4096 --l1i_size 4096 --cacheline_size 64 --bp-type BiModeBP
                 "${workspaceFolder}/configs/example/se_bp.py",
                 "-c",
-                "401.bzip2/bzip2.rv",
-                "-o",
-                "-f -k -z README",
+                "tests/test-progs/speccpu/spec_cpu_2006/401.bzip2.rv",
                 "--cpu-type",
                 "DerivO3CPU",
                 "--caches"
