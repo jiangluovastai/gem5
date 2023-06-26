@@ -45,6 +45,8 @@ CXXFLAGS += -std=c++17
 CXXFLAGS += -g -DTRACING_ON
 LIBS = -lgem5_$(VARIANT) -lsystemc -lpng
 
+LIBFILE = ../../../build/$(ARCH)/libgem5_$(VARIANT).so
+
 ALL = gem5.$(VARIANT).sc
 
 all: $(ALL)
@@ -61,6 +63,8 @@ main.o: main.cc sc_logger.hh sc_module.hh stats.hh
 gem5.$(VARIANT).sc: main.o stats.o \
 	sc_gem5_control.o sc_logger.o sc_module.o
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LIBS)
+	ln -fs $(LIBFILE) .
+	ln -fs $(SYSTEMC_LIB)/libsystemc-2.3.3.so .
 
 clean:
 	$(RM) $(ALL)

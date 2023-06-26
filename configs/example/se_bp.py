@@ -249,7 +249,9 @@ for i in range(np):
     if isinstance(cpu, BaseO3CPU) or isinstance(cpu, BaseMODEL0CPU):
         print('Overriding out-of-order CPU params..')
         cpu.fetchToDecodeDelay = 2
-        cpu.decodeWidth = 4
+        cpu.decodeWidth = 8
+        #cpu.fetchQueueSize = 64
+        #cpu.LQEntries = 48
 
 # ----------------- TO set below params for BP unit, TAGE
 
@@ -370,6 +372,15 @@ else:
     CacheConfig.config_cache(args, system)
     MemConfig.config_mem(args, system)
     config_filesystem(system, args)
+    for cpu in system.cpu:
+        if isinstance(cpu, BaseO3CPU) or isinstance(cpu, BaseMODEL0CPU):
+            print('Overriding out-of-order CPU Cache params..')
+            #cpu.dcache.data_latency = 1
+            #cpu.dcache.cpu_side = [SlavePort('l1d_p0'), SlavePort('l1d_p1')]
+            #cpu.dcache.response_latency = 1
+            #cpu.dcache.tag_latency = 1
+            #cpu.connectAllPorts(cpu.dcache)
+            pass
 
 system.workload = SEWorkload.init_compatible(mp0_path)
 

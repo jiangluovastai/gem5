@@ -41,6 +41,54 @@
                 }
             ]
         },
+
+        {
+            "name": "(gdb) ooo",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/RISCV/gem5.debug",
+            "args": [
+                // --outdir m5out_DerivO3CPU_BiModeBP_4096_4096_301371930 configs/example/se_bp.py -c 401.bzip2/bzip2.rv -o '-f -k -z README' --cpu-type DerivO3CPU --caches --l1d_size 4096 --l1i_size 4096 --cacheline_size 64 --bp-type BiModeBP
+                "${workspaceFolder}/configs/example/se_bp.py",
+                "-c",
+                "tests/test-progs/progs/md5.rv",
+                "-o",
+                "100 hello",
+                "--cpu-type",
+                "DerivO3CPU",
+                "--caches",
+                "--l1d_size",
+                "32768",
+                "--l1i_size",
+                "32768",
+                "--cacheline_size",
+                "64",
+                "--bp-type",
+                "BiModeBP"
+                //"--interp-dir",
+                //"/usr/riscv64-linux-gnu",
+                //"--cmd",
+                //"/home/vmware/repos/fibo/hello",
+                ////"${workspaceFolder}/tests/test-progs/hello/bin/riscv/linux/hello",
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ]
+        },
         
         {
             "name": "Python: Scons",

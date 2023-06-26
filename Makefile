@@ -3,6 +3,14 @@
 PLD_BIN := tests/test-progs/progs/md5.rv
 PLD_OPT := 100 hello
 
+ifeq ($(POSTFIX), )
+POSTFIX_F:= 
+else
+POSTFIX_F:=_$(POSTFIX)
+endif
+
+OUT_TIME := $(shell date +%y%m%d%H%M%S)
+
 # output
 OUTDIR := 
 POSTFIX := 
@@ -10,19 +18,11 @@ POSTFIX :=
 ifeq ($(OUTDIR), )
 OUTDIR_FINAL := --outdir m5out
 else
-OUTDIR_FINAL := --outdir $(OUTDIR)/m5out_$(BP_TYPE)_$(L1I)_$(L1D)_$(OUT_TIME)$(POSTFIX_F) 
+OUTDIR_FINAL := --outdir $(OUTDIR)/m5out_$(BP_TYPE)_$(L1I)_$(L1D)_$(OUT_TIME)$(POSTFIX_F)
 endif
-
-ifeq ($(POSTFIX), )
-POSTFIX_F := 
-else
-POSTFIX_F := _$(POSTFIX)
-endif
-
-OUT_TIME := $(shell date +%y%m%d%H%M%S)
 
 ifeq ($(DEBUG), 1)
-DEBUG_OPTS = --debug-flags=O3PipeView --debug-file=trace.out
+DEBUG_OPTS = --debug-flags=O3PipeView,O3CPUAll --debug-file=trace_$(OUT_TIME).out
 else
 DEBUG_OPTS = 
 endif
@@ -35,8 +35,8 @@ BUILD_TYPE:=debug
 
 CPU_TYPE := DerivO3CPU
 BP_TYPE := BiModeBP
-L1D := 4096
-L1I := 4096
+L1D := 32768
+L1I := 32768
 CACHELINE := 64
 
 #OUTDIR := m5out_$(CPU_TYPE)_$(BP_TYPE)_$(L1I)_$(L1D)_$(shell date +%N)
