@@ -86,6 +86,7 @@ UPPER := $(shell echo $(TARGET_PLAT) | tr a-z A-Z)
 
 build:
 	python3 `which scons` -j 32 build/$(UPPER)/gem5.$(BUILD_TYPE)
+	python3 `which scons` --without-tcmalloc USE_SYSTEMC=1 build/RISCV/libgem5_$(BUILD_TYPE).so -j 32
 
 
 #CPU=$(shell expr \(`cat /proc/cpuinfo | grep 'core id'|tail -n 1| awk '{print $4}'` + 1\) / 2 )

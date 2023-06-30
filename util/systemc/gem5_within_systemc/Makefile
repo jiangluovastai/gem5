@@ -40,12 +40,12 @@ SYSTEMC_INC = /opt/systemc/include
 SYSTEMC_LIB = /opt/systemc/lib-linux64
 
 CXXFLAGS = -I../../../build/$(ARCH) -L../../../build/$(ARCH)
-CXXFLAGS += -I$(SYSTEMC_INC) -L$(SYSTEMC_LIB)
-CXXFLAGS += -std=c++17
+CXXFLAGS += -I$(SYSTEMC_INC) -L$(SYSTEMC_LIB) -L.
+CXXFLAGS += -std=c++17 -fPIC -g -m64 -O0 -MMD -MP -fPIC -Wall -Werror -DSC_INCLUDE_DYNAMIC_PROCESSES -Wp,-w -fmax-errors=5 -fno-var-tracking-assignments -fpermissive -pthread -Wl,-rpath=. -Wl,-rpath=../../../build/$(ARCH)
 CXXFLAGS += -g -DTRACING_ON
-LIBS = -lgem5_$(VARIANT) -lsystemc -lpng
+LIBS = -lgem5_$(VARIANT) -lpng
 
-LIBFILE = ../../../build/$(ARCH)/libgem5_$(VARIANT).so
+#LIBFILE = ../../../build/$(ARCH)/libgem5_$(VARIANT).so
 
 ALL = gem5.$(VARIANT).sc
 
@@ -60,11 +60,14 @@ sc_module.o: sc_module.cc sc_module.hh
 stats.o: stats.cc stats.hh
 main.o: main.cc sc_logger.hh sc_module.hh stats.hh
 
+#libsystemc.o: $(SYSTEMC_LIB)/libsystemc.a
+#	$(CXX) $(CXXFLAGS) -o $@ $^
+
 gem5.$(VARIANT).sc: main.o stats.o \
-	sc_gem5_control.o sc_logger.o sc_module.o
+	sc_gem5_control.o sc_logger.o sc_module.o $(SYSTEMC_LIB)/libsystemc.a
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LIBS)
-	ln -fs $(LIBFILE) .
-	ln -fs $(SYSTEMC_LIB)/libsystemc-2.3.3.so .
+	#cp $(LIBFILE) .
+	#ln -fs $(SYSTEMC_LIB)/libsystemc-2.3.3.so .
 
 clean:
 	$(RM) $(ALL)
