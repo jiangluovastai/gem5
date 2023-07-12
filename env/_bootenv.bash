@@ -16,7 +16,7 @@ else
 
     export PROJECT='gem5'
 
-    export PATH="$PROJECT_ROOT/util:$PROJECT_ROOT/flows:$PATH"
+    export PATH="$PROJECT_ROOT/tests/test-progs/speccpu/spec_cpu_2006/flows:$PROJECT_ROOT/util:$PROJECT_ROOT/flows:$PATH"
     
     CUSTOM_SCR=$PROJECT_ROOT/.bootcm.bash
     if [ -e $CUSTOM_SCR ]; then
