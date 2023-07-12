@@ -5,6 +5,34 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "(gdb) Launch SC",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/util/systemc/gem5_within_systemc/gem5.debug.sc",
+            "args": [
+                "${workspaceFolder}/m5out/config.ini",
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [
+                {"name": "LD_LIBRARY_PATH", "value": "${workspaceFolder/build/RISCV}"},
+            ],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
@@ -22,6 +50,33 @@
                 //"--cmd",
                 //"/home/vmware/repos/fibo/hello",
                 ////"${workspaceFolder}/tests/test-progs/hello/bin/riscv/linux/hello",
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+
+        {
+            "name": "(gdb) Launch PY file",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/RISCV/gem5.debug",
+            "args": [
+                "${file}",
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

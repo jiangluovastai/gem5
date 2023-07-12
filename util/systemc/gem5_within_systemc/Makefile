@@ -40,7 +40,7 @@ SYSTEMC_INC = /opt/systemc/include
 SYSTEMC_LIB = /opt/systemc/lib-linux64
 CXXFLAGS = -I../../../build/$(ARCH) -L../../../build/$(ARCH)
 CXXFLAGS += -I$(SYSTEMC_INC) -L$(SYSTEMC_LIB) -L.
-CXXFLAGS += -std=c++17 -fPIC -g -m64 -O0 -MMD -MP -fPIC -Wall -Werror -DSC_INCLUDE_DYNAMIC_PROCESSES -Wp,-w -fmax-errors=5 -fno-var-tracking-assignments -fpermissive -pthread -Wl,-rpath=. -Wl,-rpath=../../../build/$(ARCH)
+CXXFLAGS += -std=c++17 -fPIC -g -m64 -O0 -MMD -MP -fPIC -Wall -Werror -DSC_INCLUDE_DYNAMIC_PROCESSES -Wp,-w -fmax-errors=5 -fno-var-tracking-assignments -fpermissive -pthread -Wl,-rpath=. -Wl,-rpath=$(PROJECT_ROOT)/build/$(ARCH)
 CXXFLAGS += -g -DTRACING_ON
 LIBS = -lgem5_$(VARIANT) -lpng
 

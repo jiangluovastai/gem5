@@ -1,16 +1,33 @@
 {
     "cmake.configureOnOpen": false,
+    "python.languageServer": "Pylance",
+    "python.defaultInterpreterPath": "python3",
     "python.analysis.extraPaths": [
-        "${workspaceFolder}/src/python/",
-        "${workspaceFolder}/site_scons/",
-        "${workspaceFolder}/ext",
-        "${workspaceFolder}/src/python/m5",
-        "${workspaceFolder}/build/RISCV/python",
-        "${workspaceFolder}/build/RISCV/python/m5",
-        "${workspaceFolder}/build/RISCV/python/m5/objects",
-        "${workspaceFolder}/build/RISCV/src/cpu/pred",
-        "${workspaceFolder}/build/RISCV/sim"
+        //"${workspaceFolder}/src/python/",
+        //"${workspaceFolder}/site_scons/",
+        //"${workspaceFolder}/ext",
+        //"${workspaceFolder}/src/python/m5",
+        //"${workspaceFolder}/build/RISCV/python",
+        //"${workspaceFolder}/build/RISCV/python/m5",
+        //"${workspaceFolder}/build/RISCV/python/m5/objects",
+        //"${workspaceFolder}/build/RISCV/src/cpu/pred",
+        //"${workspaceFolder}/build/RISCV/sim",
+        //"${workspaceFolder}/src/python/**",
+        //"${workspaceFolder}/site_scons/**",
+        //"${workspaceFolder}/ext/**",
+        //"${workspaceFolder}/build/RISCV/**",
+        "./build/RISCV",
+        //"./build/RISCV/m5",
+        //"${workspaceFolder}/src/**"
     ],
+    "python.analysis.autoSearchPaths": true,
+    //"python.analysis.include": [
+    //    "${workspaceFolder}/src/python/**",
+    //    "${workspaceFolder}/site_scons/**",
+    //    "${workspaceFolder}/ext/**",
+    //    "${workspaceFolder}/build/RISCV/**",
+    //    "${workspaceFolder}/src/**"
+    //],
     "files.associations": {
         "shared_mutex": "cpp",
         "chrono": "cpp",
