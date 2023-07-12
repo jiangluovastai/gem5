@@ -113,7 +113,7 @@ def get_processes(args):
         idx += 1
 
     if args.smt:
-        assert args.cpu_type == "DerivO3CPU"
+        assert args.cpu_type in ("DerivO3CPU", "DerivMODEL0CPU")
         return multiprocesses, idx
     else:
         return multiprocesses, 1
@@ -164,7 +164,6 @@ elif args.cmd:
 else:
     print("No workload specified. Exiting!\n", file=sys.stderr)
     sys.exit(1)
-
 
 (CPUClass, test_mem_mode, FutureClass) = Simulation.setCPUClass(args)
 CPUClass.numThreads = numThreads
@@ -247,8 +246,8 @@ for i in range(np):
     
 
     #   ----- Handle O3 CPU params -----
-    if isinstance(cpu, BaseO3CPU):
-        print('Overriding O3 CPU params..')
+    if isinstance(cpu, BaseO3CPU) or isinstance(cpu, BaseMODEL0CPU):
+        print('Overriding out-of-order CPU params..')
         cpu.fetchToDecodeDelay = 2
         cpu.decodeWidth = 4
 

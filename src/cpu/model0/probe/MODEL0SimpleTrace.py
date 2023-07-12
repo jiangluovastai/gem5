@@ -1,4 +1,14 @@
-# Copyright 2021 Google, Inc.
+# Copyright (c) 2013 ARM Limited
+# All rights reserved.
+#
+# The license below extends only to copyright in the software and shall
+# not be construed as granting a license to any other intellectual
+# property including but not limited to intellectual property relating
+# to a hardware implementation of the functionality of the software
+# licensed hereunder.  You may use the software subject to the license
+# terms below provided that you ensure that this notice is replicated
+# unmodified and in its entirety in all distributions of the software,
+# modified or unmodified, in source code or in binary form.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
@@ -23,42 +33,10 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-from m5.objects.BaseAtomicSimpleCPU import BaseAtomicSimpleCPU
-from m5.objects.BaseNonCachingSimpleCPU import BaseNonCachingSimpleCPU
-from m5.objects.BaseTimingSimpleCPU import BaseTimingSimpleCPU
-from m5.objects.BaseO3CPU import BaseO3CPU
-from m5.objects.BaseMODEL0CPU import BaseMODEL0CPU
-from m5.objects.BaseMinorCPU import BaseMinorCPU
-from m5.objects.RiscvDecoder import RiscvDecoder
-from m5.objects.RiscvMMU import RiscvMMU
-from m5.objects.RiscvInterrupts import RiscvInterrupts
-from m5.objects.RiscvISA import RiscvISA
+from m5.objects.Probe import *
 
 
-class RiscvCPU:
-    ArchDecoder = RiscvDecoder
-    ArchMMU = RiscvMMU
-    ArchInterrupts = RiscvInterrupts
-    ArchISA = RiscvISA
-
-
-class RiscvAtomicSimpleCPU(BaseAtomicSimpleCPU, RiscvCPU):
-    mmu = RiscvMMU()
-
-
-class RiscvNonCachingSimpleCPU(BaseNonCachingSimpleCPU, RiscvCPU):
-    mmu = RiscvMMU()
-
-
-class RiscvTimingSimpleCPU(BaseTimingSimpleCPU, RiscvCPU):
-    mmu = RiscvMMU()
-
-
-class RiscvO3CPU(BaseO3CPU, RiscvCPU):
-    mmu = RiscvMMU()
-
-class RiscvMODEL0CPU(BaseMODEL0CPU, RiscvCPU):
-    mmu = RiscvMMU()
-
-class RiscvMinorCPU(BaseMinorCPU, RiscvCPU):
-    mmu = RiscvMMU()
+class MODEL0SimpleTrace(ProbeListenerObject):
+    type = "MODEL0SimpleTrace"
+    cxx_class = "gem5::model0::SimpleTrace"
+    cxx_header = "cpu/model0/probe/simple_trace.hh"

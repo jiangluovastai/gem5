@@ -1,4 +1,5 @@
-# Copyright 2021 Google, Inc.
+# Copyright (c) 2007 The Regents of The University of Michigan
+# All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
@@ -23,42 +24,11 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-from m5.objects.BaseAtomicSimpleCPU import BaseAtomicSimpleCPU
-from m5.objects.BaseNonCachingSimpleCPU import BaseNonCachingSimpleCPU
-from m5.objects.BaseTimingSimpleCPU import BaseTimingSimpleCPU
-from m5.objects.BaseO3CPU import BaseO3CPU
-from m5.objects.BaseMODEL0CPU import BaseMODEL0CPU
-from m5.objects.BaseMinorCPU import BaseMinorCPU
-from m5.objects.RiscvDecoder import RiscvDecoder
-from m5.objects.RiscvMMU import RiscvMMU
-from m5.objects.RiscvInterrupts import RiscvInterrupts
-from m5.objects.RiscvISA import RiscvISA
+from m5.params import *
+from m5.objects.CheckerCPU import CheckerCPU
 
 
-class RiscvCPU:
-    ArchDecoder = RiscvDecoder
-    ArchMMU = RiscvMMU
-    ArchInterrupts = RiscvInterrupts
-    ArchISA = RiscvISA
-
-
-class RiscvAtomicSimpleCPU(BaseAtomicSimpleCPU, RiscvCPU):
-    mmu = RiscvMMU()
-
-
-class RiscvNonCachingSimpleCPU(BaseNonCachingSimpleCPU, RiscvCPU):
-    mmu = RiscvMMU()
-
-
-class RiscvTimingSimpleCPU(BaseTimingSimpleCPU, RiscvCPU):
-    mmu = RiscvMMU()
-
-
-class RiscvO3CPU(BaseO3CPU, RiscvCPU):
-    mmu = RiscvMMU()
-
-class RiscvMODEL0CPU(BaseMODEL0CPU, RiscvCPU):
-    mmu = RiscvMMU()
-
-class RiscvMinorCPU(BaseMinorCPU, RiscvCPU):
-    mmu = RiscvMMU()
+class BaseMODEL0Checker(CheckerCPU):
+    type = "BaseMODEL0Checker"
+    cxx_class = "gem5::model0::Checker"
+    cxx_header = "cpu/model0/checker.hh"

@@ -106,6 +106,8 @@ for status, fname in git.status(filter="MA", cached=True):
                 staged_mismatch.add(fname)
     f.close()
 
+# g: shutdown style check
+failing_files = set()
 if failing_files:
     if len(failing_files) > len(staged_mismatch):
         print("\n", file=sys.stderr)

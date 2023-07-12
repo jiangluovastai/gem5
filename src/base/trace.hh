@@ -43,6 +43,7 @@
 #include "base/match.hh"
 #include "base/types.hh"
 #include "sim/cur_tick.hh"
+//#include "sst/gem5.hh"
 
 // Return the global context name "global".  This function gets called when
 // the DPRINTF macros are used in a context without a visible name() function
